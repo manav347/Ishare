@@ -1,0 +1,53 @@
+.navbar {
+  padding: 0 5%;
+  background-color: #4cd4cb;
+  display: flex;
+  align-items: center;
+  height: 16vh;
+  justify-content: space-between;
+  font-family: "Playfair Display", serif;
+}
+.navbarx {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.navbary {
+  display: flex;
+  justify-content: start;
+}
+.navbar-collapse {
+  display: flex;
+}
+.navbar-brand1 {
+  color: #232323;
+  margin-right: auto;
+  margin-bottom: 0;
+  /* font-size: 17px; */
+  font-size: 1em;
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff9f9;
+}
+.navbar-brand2 {
+  color: #232323;
+  font-size: 1.5em;
+  font-style: normal;
+  font-weight: bold;
+  margin: 0;
+}
+.nav-link {
+  color: #232323;
+  font-size: 1.4rem;
+  margin-left: 10px;
+}
+Data.link {
+  color: #232323;
+}
+.navbar-brand1:hover {
+  color: #fff9f9;
+}
+.navbar-brand:hover {
+  color: #232323;
+}

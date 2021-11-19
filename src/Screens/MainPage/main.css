@@ -1,0 +1,20 @@
+#main-section {
+  margin: 0;
+  padding: 0;
+  margin-top: 16vh;
+}
+.main-con {
+  display: flex;
+}
+.userContext-con {
+  width: 35%;
+  height: 100%;
+  background: #e5e5e5;
+  border: 1px;
+  border-color: black;
+}
+.userLog-con {
+  background: #e5e5e5;
+  width: 65%;
+  height: 100%;
+}
