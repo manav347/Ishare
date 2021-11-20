@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import "./main.css"
 import styled from "styled-components";
 import ContactListComponent from "./ContactListComponent";
-import ConversationComponent from "./ConversationComponent";
+import ConversationComponentEr from "./ConversationComponentEr";
 
 
 
-export default function MainPage() {
+export default function EmergenciesPage() {
   const [selectedChat, setChat] = useState();
 
 
@@ -16,7 +16,7 @@ export default function MainPage() {
         <Container>
           <ContactListComponent setChat={setChat} />
           {selectedChat ? (
-            <ConversationComponent selectedChat={selectedChat} />
+            <ConversationComponentEr selectedChat={selectedChat} />
           ) : (
             <Placeholder>
               <span>I share</span>

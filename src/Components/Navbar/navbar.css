@@ -4,8 +4,20 @@
   display: flex;
   align-items: center;
   height: 16vh;
-  justify-content: space-between;
   font-family: "Playfair Display", serif;
+}
+.ButtonEr{
+  width: 150px; 
+  margin: 0.4em; 
+  padding: 0 5px;
+  height: 30px;
+  border: none;
+  font-weight: 500;
+}
+.ButtonEr:hover {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #A30000;
 }
 .navbarx {
   display: flex;

@@ -1,38 +1,40 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import Diamond from '../../Assets/Images/bg.png';
+import NavbarLogin from '../../Components/NavbarLogin/navbarLogin';
 
 function LoginPage() {
 
-    return (
-        
-        <>
-		<img  src={Diamond} style={{zIndex:"-1", position:"absolute", left:"0", height:"93vh", width:"100%"}} alt="fireSpot"/>
-            <Div >
-            <Form>
-			<HH>Login</HH>
-			<Input
-				placeholder='Enter credentials'
-			/>
-			<Input
-				type="email"
-				placeholder='Enter password'
-				pattern=".+@globex\.com" size="30" required
-			/>
-			<Div2>
-			<input type="checkbox" style={{size:"20px",marginRight:"1em"}} />
-			<p style={{fontSize:"15px"}} >Remember me</p>
-			</Div2>
-			<ButtonWrapper>
-				<Button type='button' to="/main" exact>
-					SUBMIT
-				</Button>
-			</ButtonWrapper>
-		</Form>
+	return (
 
-            </Div>
-        </>
-    )
+		<>
+			<NavbarLogin />
+			<img src={Diamond} style={{ zIndex: "-1", position: "absolute", left: "0", height: "93vh", width: "100%" }} alt="fireSpot" />
+			<Div >
+				<Form>
+					<HH>Login</HH>
+					<Input
+						placeholder='Enter credentials'
+					/>
+					<Input
+						type="email"
+						placeholder='Enter password'
+						pattern=".+@globex\.com" size="30" required
+					/>
+					<Div2>
+						<input type="checkbox" style={{ size: "20px", marginRight: "1em" }} />
+						<p style={{ fontSize: "15px" }} >Remember me</p>
+					</Div2>
+					<ButtonWrapper>
+						<Button type='button' to="/main" exact>
+							SUBMIT
+						</Button>
+					</ButtonWrapper>
+				</Form>
+
+			</Div>
+		</>
+	)
 }
 
 const HH = styled.h1`
