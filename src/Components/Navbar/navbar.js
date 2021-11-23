@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./navbar.css";
 import { FaBookmark } from 'react-icons/fa';
 import { FaUserCircle } from 'react-icons/fa';
@@ -6,6 +6,22 @@ import Diamond from '../../Assets/Images/dLogo.png';
 
 
 function Navbar() {
+
+    const [getlocation, setGetlocation] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getAllRegions`, {
+            method: "get"
+        })
+            .then(res => res.json())
+            .then(initialLocation => {
+                setGetlocation(initialLocation);
+                console.log(getlocation);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, [])
 
     return (
         <div id="navid">
@@ -22,10 +38,18 @@ function Navbar() {
                 <div className=" navbar ms-auto p-2" id="navbarSupportedContent">
                     <div class="input-group d-flex">
                         <select name="cars" id="cars" style={{ width: "187px", margin: "0.4em", padding: "0 5px", height: "30px", fontWeight: "500" }}>
-                            <option value="volvo">Select region</option>
+
+
+                            {
+                                getlocation.map((item, index) =>
+                                    <option key={item.regionName} value={item.regionName} >{item.regionName}</option>
+                                )
+                            }
+
+                            {/* <option value="volvo">Select region</option>
                             <option value="saab">Maharashtra</option>
                             <option value="opel">Punjab</option>
-                            <option value="audi">Up</option>
+                            <option value="audi">Up</option> */}
                         </select>
                         <FaBookmark style={{ fontSize: "30px", margin: "0.2em 2em 0 0.5em" }} />
                         <FaUserCircle style={{ fontSize: "45px", color: "#fff9f9;" }} />
