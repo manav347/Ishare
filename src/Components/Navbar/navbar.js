@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import "./navbar.css";
 import { FaBookmark } from 'react-icons/fa';
 import { FaUserCircle } from 'react-icons/fa';
 import Diamond from '../../Assets/Images/dLogo.png';
+import { UseSelectedLocation } from "../context";
 
 
 function Navbar() {
 
     const [getlocation, setGetlocation] = useState([]);
-    const [slocation, setSlocation] = useState('');
+    // const [slocation, setSlocation] = useState('');
+    const { slocation, setSlocation } = UseSelectedLocation()
 
+    console.log(slocation)
     useEffect(() => {
         fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getAllRegions`, {
             method: "get"
@@ -23,7 +27,6 @@ function Navbar() {
             })
     }, [])
 
-    console.log(slocation)
 
     // RegionChange
 
@@ -36,17 +39,17 @@ function Navbar() {
                     <p className="navbar-brand2" href="home">Welcome to I Share</p>
                 </div>
                 <div className="navbary p-2">
-                    <button onClick={() => window.location.href = '/er'} className="ButtonEr" href="/er">Emergencies</button>
-                    <button onClick={() => window.location.href = '/main'} className="ButtonEr" to="/main">Users</button>
+                    <Link to="/er"><button className="ButtonEr">Emergencies</button></Link>
+                    <Link to="/main"><button className="ButtonEr">Users</button></Link>
                 </div>
                 <div className=" navbar ms-auto p-2" id="navbarSupportedContent">
                     <div class="input-group d-flex">
-                        <select name="cars" id="cars" style={{ width: "187px", margin: "0.4em", padding: "0 5px", height: "30px", fontWeight: "500" }}>
+                        <select onChange={(e) => setSlocation(e.target.value)} name="cars" id="cars" style={{ width: "187px", margin: "0.4em", padding: "0 5px", height: "30px", fontWeight: "500" }}>
 
 
                             {
                                 getlocation.map((item, index) =>
-                                    <option key={item.regionName} value={item.regionName}  >{item.regionName}</option>
+                                    <option onChange={(e) => setSlocation(e.target.value)} key={item.regionName} value={item.regionName}  >{item.regionName}</option>
                                 )
                             }
 

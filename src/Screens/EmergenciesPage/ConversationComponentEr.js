@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ReactPlayer from 'react-player'
 import { messagesList } from "./mockData";
 import MapContainer from "../../Components/Map/map";
+import { UseSelectedLocation } from "../../Components/context";
 
 
 export default function ConversationComponentEr(props) {
@@ -10,40 +11,64 @@ export default function ConversationComponentEr(props) {
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState(messagesList);
+  const { slocation, setSlocation } = UseSelectedLocation()
 
-  console.log(selectedChat)
 
-  const onEnterPress = (event) => {
-    if (event.key === "Enter") {
-      const messages = [...messageList];
-      messages.push({
-        id: 0,
-        messageType: "TEXT",
-        text,
-        senderID: 0,
-        addedOn: "12:02 PM",
-      });
-      setMessageList(messages);
-      setText("");
-    }
-  };
+  const [emergencies, setEmergencies] = useState([]);
+
+  // console.log(selectedChat)
+
+  // const onEnterPress = (event) => {
+  //   if (event.key === "Enter") {
+  //     const messages = [...messageList];
+  //     messages.push({
+  //       id: 0,
+  //       messageType: "TEXT",
+  //       text,
+  //       senderID: 0,
+  //       addedOn: "12:02 PM",
+  //     });
+  //     setMessageList(messages);
+  //     setText("");
+  //   }
+  // };
+
+
+  useEffect(() => {
+    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getEmergencyData/${selectedChat.userId}`, {
+      method: "post",
+      body: JSON.stringify({
+        "regionName": slocation
+      })
+    })
+      .then(res => res.json(
+      ))
+      .then(data => {
+        {
+          data.length > 0 &&
+
+            console.log(data);
+          setEmergencies(data);
+        }
+        // setEmergencies(data);
+      })
+      .catch(e => {
+        //       console.log(e);
+      })
+  }, [selectedChat.userId, slocation])
+  //  console.log(emergencies.videoURL);
   return (
     <Container>
       <MessageContainer>
 
-        <MessageDiv isYours={selectedChat.id === 0}>
-          <Message isYours={selectedChat.id === 0}>
+        <MessageDiv isYours={selectedChat.userId === 0}>
+          <Message isYours={selectedChat.userId === 0}>
             Name - {selectedChat.userName}
           </Message>
         </MessageDiv>
-        <MessageDiv isYours={selectedChat.id === 0}>
-          <Message isYours={selectedChat.id === 0}>
+        <MessageDiv isYours={selectedChat.userId === 0}>
+          <Message isYours={selectedChat.userId === 0}>
             Ph - {selectedChat.contactNumber}
-          </Message>
-        </MessageDiv>
-        <MessageDiv isYours={selectedChat.id === 0}>
-          <Message isYours={selectedChat.id === 0}>
-            Email - {selectedChat.email}
           </Message>
         </MessageDiv>
 
@@ -54,7 +79,7 @@ export default function ConversationComponentEr(props) {
             <MapContainer />
           </div>
           <div style={{ width: "350px", height: "250px", backgroundColor: "blue", margin: "30px" }}>
-            <ReactPlayer url='https://res.cloudinary.com/demo/video/upload/c_crop,h_200,w_300/dog.mp4'
+            <ReactPlayer url={emergencies[0] ? emergencies[0].videoURL : null}
               width='100%'
               height='100%'
               controls />

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { contactList } from "./mockData";
+import { UseSelectedLocation } from "../../Components/context";
 
 const ContactComponent = (props) => {
   const { userData, setChat } = props;
+  const { ERData, setERData } = props;
   return (
     <ContactItem onClick={() => setChat(userData)}>
       {/* <ProfileIcon src={userData.profilePic} /> */}
@@ -18,6 +20,7 @@ const ContactComponent = (props) => {
 function ContactListComponent(props) {
 
 
+  const { slocation, setSlocation } = UseSelectedLocation()
   const [users, setUsers] = useState([]);
 
 
@@ -25,7 +28,7 @@ function ContactListComponent(props) {
     fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getEmergencyData`, {
       method: "post",
       body: JSON.stringify({
-        "regionName": "Mumbai"
+        "regionName": slocation
       })
     })
       .then(res => res.json(
@@ -37,13 +40,13 @@ function ContactListComponent(props) {
       .catch(e => {
         console.log(e);
       })
-  }, [])
+  }, [slocation])
 
   console.log(users)
 
   return (
     <Container>
-      <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Users</h4>
+      <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Emergencies</h4>
 
       {
         users.length > 0 &&

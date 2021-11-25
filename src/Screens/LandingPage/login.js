@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from 'styled-components';
 import Diamond from '../../Assets/Images/bg.png';
 import NavbarLogin from '../../Components/NavbarLogin/navbarLogin';
@@ -12,7 +12,9 @@ function LoginPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-
+	// let history = useHistory();
+	// let location = useLocation();
+	// let { from } = location.state || { from: { pathname: "/main" } };
 
 	const handleSubmit = () => {
 		fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/adminLogin`, {
@@ -24,13 +26,20 @@ function LoginPage() {
 		})
 			.then(res => res.json())
 			.then(data => {
-				console.log(data)
-				// console.log(data.status)
-				loginS()
-				function loginS() {
-					// 	  history.push("/main");
+				// console.log(data)
+				console.log(data.status)
+				// loginS()
+				// function loginS() {
+				// 	history.push("/main");
+				// }
+				// localStorage.setItem('userid', email);
+				// history.replace(from);
+				if (data.status === 'Login Success') {
+					alert("login successful")
+				} if (data.status === "Admin don't exist") {
+					alert("Invalid credentials")
 				}
-				alert("login successful")
+
 			})
 			.catch(e => {
 				console.log(e);
