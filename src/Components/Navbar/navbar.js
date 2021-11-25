@@ -8,6 +8,7 @@ import Diamond from '../../Assets/Images/dLogo.png';
 function Navbar() {
 
     const [getlocation, setGetlocation] = useState([]);
+    const [slocation, setSlocation] = useState('');
 
     useEffect(() => {
         fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getAllRegions`, {
@@ -21,6 +22,10 @@ function Navbar() {
                 console.log(error)
             })
     }, [])
+
+    console.log(slocation)
+
+    // RegionChange
 
     return (
         <div id="navid">
@@ -41,7 +46,7 @@ function Navbar() {
 
                             {
                                 getlocation.map((item, index) =>
-                                    <option key={item.regionName} value={item.regionName} >{item.regionName}</option>
+                                    <option key={item.regionName} value={item.regionName}  >{item.regionName}</option>
                                 )
                             }
 

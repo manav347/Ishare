@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { contactList } from "./mockData";
 
 const ContactComponent = (props) => {
   const { userData, setChat } = props;
+  return (
+    <ContactItem onClick={() => setChat(userData)}>
+      {/* <ProfileIcon src={userData.profilePic} /> */}
+      <ContactInfo>
+        <ContactName>Name - {userData?.userName}</ContactName>
+        <MessageText> Ph - {userData?.contactNumber}</MessageText>
+      </ContactInfo>
+      {/* <MessageTime> {userData?.phoneNoTime}</MessageTime> */}
+    </ContactItem>
+  );
+};
+
+
+function ContactListComponent(props) {
 
   const [users, setUsers] = useState([]);
 
@@ -15,35 +28,24 @@ const ContactComponent = (props) => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        setUsers(data.result);
-        console.log(users.userName)
+        setUsers(data);
       })
       .catch(e => {
         console.log(e);
       })
   }, [])
 
-  // console.log(users)
-  // console.log(users.userName)
-  return (
-    <ContactItem onClick={() => setChat(userData)}>
-      <ProfileIcon src={userData.profilePic} />
-      <ContactInfo>
-        <ContactName>{userData?.name}</ContactName>
-        <MessageText>{userData?.phoneNo}</MessageText>
-      </ContactInfo>
-      <MessageTime> {userData?.phoneNoTime}</MessageTime>
-    </ContactItem>
-  );
-};
-function ContactListComponent(props) {
+  console.log(users)
+
   return (
     <Container>
       <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Users</h4>
 
-      {contactList.map((userData) => (
-        <ContactComponent userData={userData} setChat={props.setChat} />
-      ))}
+      {
+        users.length > 0 &&
+        users.map((userData) => (
+          <ContactComponent userData={userData} setChat={props.setChat} />
+        ))}
     </Container>
   );
 }
@@ -107,6 +109,7 @@ const ContactItem = styled.div`
   border-bottom: 1px solid #f2f2f2;
   background: white;
   cursor: pointer;
+  min-height: 53px;
 
   :hover {
     background: #ebebeb;

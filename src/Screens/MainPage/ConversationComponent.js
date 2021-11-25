@@ -10,6 +10,8 @@ function ConversationComponent(props) {
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState(messagesList);
 
+  console.log(selectedChat)
+
   const onEnterPress = (event) => {
     if (event.key === "Enter") {
       const messages = [...messageList];
@@ -26,7 +28,7 @@ function ConversationComponent(props) {
   };
 
   const ss = () => {
-    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/postOTP/16eb73e0-b7eb-4968-b5a7-60c94fa9be27`, {
+    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/postOTP/${selectedChat.id}`, {
       method: "post"
     })
       .then(res => res.json())
@@ -42,13 +44,23 @@ function ConversationComponent(props) {
   return (
     <Container>
       <MessageContainer>
-        {messageList.map((messageData) => (
-          <MessageDiv isYours={messageData.senderID === 0}>
-            <Message isYours={messageData.senderID === 0}>
-              {[messageData.text]}
-            </Message>
-          </MessageDiv>
-        ))}
+
+        <MessageDiv isYours={selectedChat.id === 0}>
+          <Message isYours={selectedChat.id === 0}>
+            Name - {selectedChat.userName}
+          </Message>
+        </MessageDiv>
+        <MessageDiv isYours={selectedChat.id === 0}>
+          <Message isYours={selectedChat.id === 0}>
+            Ph - {selectedChat.contactNumber}
+          </Message>
+        </MessageDiv>
+        <MessageDiv isYours={selectedChat.id === 0}>
+          <Message isYours={selectedChat.id === 0}>
+            Email - {selectedChat.email}
+          </Message>
+        </MessageDiv>
+
 
 
       </MessageContainer>
