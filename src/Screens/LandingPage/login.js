@@ -1,9 +1,41 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import Diamond from '../../Assets/Images/bg.png';
 import NavbarLogin from '../../Components/NavbarLogin/navbarLogin';
 
 function LoginPage() {
+
+	// const history = useHistory();
+
+
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+
+
+	const handleSubmit = () => {
+		fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/adminLogin`, {
+			method: "post",
+			body: JSON.stringify({
+				"email": email,
+				"password": password
+			})
+		})
+			.then(res => res.json())
+			.then(data => {
+				console.log(data)
+				// console.log(data.status)
+				loginS()
+				function loginS() {
+					// 	  history.push("/main");
+				}
+				alert("login successful")
+			})
+			.catch(e => {
+				console.log(e);
+			})
+	}
 
 	return (
 
@@ -15,18 +47,20 @@ function LoginPage() {
 					<HH>Login</HH>
 					<Input
 						placeholder='Enter credentials'
+						onChange={event => setEmail(event.target.value)}
 					/>
 					<Input
 						type="email"
 						placeholder='Enter password'
 						pattern=".+@globex\.com" size="30" required
+						onChange={event => setPassword(event.target.value)}
 					/>
 					<Div2>
 						<input type="checkbox" style={{ size: "20px", marginRight: "1em" }} />
 						<p style={{ fontSize: "15px" }} >Remember me</p>
 					</Div2>
 					<ButtonWrapper>
-						<Button type='button' to="/main" exact>
+						<Button type='button' to="/main" exact onClick={() => { handleSubmit() }}>
 							SUBMIT
 						</Button>
 					</ButtonWrapper>

@@ -112,16 +112,16 @@ const ContactComponent = (props) => {
       <ProfileIcon src={userData.profilePic} />
       <ContactInfo>
         <ContactName>{userData?.name}</ContactName>
-        <MessageText>{userData?.lastText}</MessageText>
+        <MessageText>{userData?.phoneNo}</MessageText>
       </ContactInfo>
-      <MessageTime> {userData?.lastTextTime}</MessageTime>
+      <MessageTime> {userData?.phoneNoTime}</MessageTime>
     </ContactItem>
   );
 };
 function ContactListComponent(props) {
   return (
     <Container>
-        <h4 style={{margin:"5% 5% 2%", paddingTop:"5%"}}>EMERGENCIES</h4>
+      <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>EMERGENCIES</h4>
 
       {contactList.map((userData) => (
         <ContactComponent userData={userData} setChat={props.setChat} />

@@ -16,7 +16,6 @@ function Navbar() {
             .then(res => res.json())
             .then(initialLocation => {
                 setGetlocation(initialLocation);
-                console.log(getlocation);
             })
             .catch(error => {
                 console.log(error)

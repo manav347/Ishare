@@ -1,24 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import ReactPlayer from 'react-player'
+// import Picker from "emoji-picker-react";
 import { messagesList } from "./mockData";
-// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import MapContainer from "../../Components/Map/map";
 
-const SearchBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #f6f6f6;
-  padding: 10px;
-`;
+
+function ConversationComponent(props) {
+  const { selectedChat } = props;
+  const [text, setText] = useState("");
+  const [pickerVisible, togglePicker] = useState(false);
+  const [messageList, setMessageList] = useState(messagesList);
+
+  const onEnterPress = (event) => {
+    if (event.key === "Enter") {
+      const messages = [...messageList];
+      messages.push({
+        id: 0,
+        messageType: "TEXT",
+        text,
+        senderID: 0,
+        addedOn: "12:02 PM",
+      });
+      setMessageList(messages);
+      setText("");
+    }
+  };
+
+  const ss = () => {
+    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/postOTP/16eb73e0-b7eb-4968-b5a7-60c94fa9be27`, {
+      method: "post"
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert("Otp sent !!")
+      })
+      .catch(e => {
+        alert("Error !!")
+      })
+  }
+
+
+  return (
+    <Container>
+      <MessageContainer>
+        {messageList.map((messageData) => (
+          <MessageDiv isYours={messageData.senderID === 0}>
+            <Message isYours={messageData.senderID === 0}>
+              {[messageData.text]}
+            </Message>
+          </MessageDiv>
+        ))}
+
+
+      </MessageContainer>
+      <ChatBox>
+        <button onClick={() => ss()} style={{ width: "150px", borderRadius: "30px", color: "#ffffff", margin: "0.4em", padding: "0 5px", height: "60px", border: "none", fontWeight: "500", backgroundColor: "#A30000" }}>Approve </button>
+        <button style={{ width: "150px", borderRadius: "30px", color: "#ffffff", margin: "0.4em", padding: "0 5px", height: "60px", border: "none", fontWeight: "500", backgroundColor: "#A30000" }}>Reject</button>
+      </ChatBox>
+    </Container>
+  );
+}
+
+export default ConversationComponent;
+
+
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   background: white;
   border-radius: 16px;
   width: 100%;
   padding: 5px 10px;
   gap: 10px;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 15px;
 `;
 
 const Container = styled.div`
@@ -59,6 +119,7 @@ const ContactName = styled.span`
 const ChatBox = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   background: #E5E5E5;
   padding: 10px;
   align-items: center;
@@ -68,7 +129,6 @@ const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow-y: scroll;
   overflow-y: auto;
   padding-top: 5%;
   background: #E5E5E5;
@@ -94,63 +154,6 @@ const EmojiImage = styled.img`
   cursor: pointer;
 `;
 
-export default function ConversationComponent(props) {
-  const { selectedChat } = props;
-  const [text, setText] = useState("");
-  const [pickerVisible, togglePicker] = useState(false);
-  const [messageList, setMessageList] = useState(messagesList);
 
-  const onEnterPress = (event) => {
-    if (event.key === "Enter") {
-      const messages = [...messageList];
-      messages.push({
-        id: 0,
-        messageType: "TEXT",
-        text,
-        senderID: 0,
-        addedOn: "12:02 PM",
-      });
-      setMessageList(messages);
-      setText("");
-    }
-  };
-  return (
-    <Container>
-      <MessageContainer>
-        {messageList.map((messageData) => (
-          <MessageDiv isYours={messageData.senderID === 0}>
-            <Message isYours={messageData.senderID === 0}>
-              {[messageData.text]}
-            </Message>
-          </MessageDiv>
-        ))}
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ width: "350px", height: "250px", backgroundColor: "red", margin: "30px" }}>
-            <MapContainer />
-          </div>
-          <div style={{ width: "350px", height: "250px", backgroundColor: "blue", margin: "30px" }}>
-            <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
-              width='100%'
-              height='100%'
-              controls />
-          </div>
-        </div>
-        {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ width: "300px", height: "200px", backgroundColor: "red", margin: "30px" }}>
-            <MapContainer
-              width='100%'
-              height='100%' />
-          </div>
-          <div style={{ width: "300px", height: "200px", backgroundColor: "blue", margin: "30px" }}>
-            <ReactPlayer url='https://www.youtube.com/watch?v=QqjBMVylBL4'
-              width='100%'
-              height='100%'
-              controls />
-          </div>
-        </div> */}
 
-      </MessageContainer>
-    </Container>
-  );
-}
-// ConversationComponent;
+

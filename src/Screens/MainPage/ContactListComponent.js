@@ -1,6 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { contactList } from "./mockData";
+
+const ContactComponent = (props) => {
+  const { userData, setChat } = props;
+
+  const [users, setUsers] = useState([]);
+
+
+  useEffect(() => {
+    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getUserOTPRequests`, {
+      method: "get"
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setUsers(data.result);
+        console.log(users.userName)
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }, [])
+
+  // console.log(users)
+  // console.log(users.userName)
+  return (
+    <ContactItem onClick={() => setChat(userData)}>
+      <ProfileIcon src={userData.profilePic} />
+      <ContactInfo>
+        <ContactName>{userData?.name}</ContactName>
+        <MessageText>{userData?.phoneNo}</MessageText>
+      </ContactInfo>
+      <MessageTime> {userData?.phoneNoTime}</MessageTime>
+    </ContactItem>
+  );
+};
+function ContactListComponent(props) {
+  return (
+    <Container>
+      <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Users</h4>
+
+      {contactList.map((userData) => (
+        <ContactComponent userData={userData} setChat={props.setChat} />
+      ))}
+    </Container>
+  );
+}
+
+export default ContactListComponent;
+
+
 
 const Container = styled.div`
   display: flex;
@@ -105,29 +155,3 @@ const ProfileIcon = styled(ProfileImage)`
   margin-bottom: 15px;
   object-fit: cover;
 `;
-const ContactComponent = (props) => {
-  const { userData, setChat } = props;
-  return (
-    <ContactItem onClick={() => setChat(userData)}>
-      <ProfileIcon src={userData.profilePic} />
-      <ContactInfo>
-        <ContactName>{userData?.name}</ContactName>
-        <MessageText>{userData?.lastText}</MessageText>
-      </ContactInfo>
-      <MessageTime> {userData?.lastTextTime}</MessageTime>
-    </ContactItem>
-  );
-};
-function ContactListComponent(props) {
-  return (
-    <Container>
-        <h4 style={{margin:"5% 5% 2%", paddingTop:"5%"}}>EMERGENCIES</h4>
-
-      {contactList.map((userData) => (
-        <ContactComponent userData={userData} setChat={props.setChat} />
-      ))}
-    </Container>
-  );
-}
-
-export default ContactListComponent;
