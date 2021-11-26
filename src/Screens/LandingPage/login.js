@@ -12,9 +12,9 @@ function LoginPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	// let history = useHistory();
-	// let location = useLocation();
-	// let { from } = location.state || { from: { pathname: "/main" } };
+	let history = useHistory();
+	let location = useLocation();
+	let { from } = location.state || { from: { pathname: "/main" } };
 
 	const handleSubmit = () => {
 		fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/adminLogin`, {
@@ -35,8 +35,8 @@ function LoginPage() {
 				// localStorage.setItem('userid', email);
 				// history.replace(from);
 				if (data.status === 'Login Success') {
-					localStorage.setItem('userid', data.id);
-					// history.replace(from);
+					localStorage.setItem('userids', data.id);
+					history.replace(from);
 					alert("login successful")
 				} if (data.status === "Admin don't exist") {
 					alert("Invalid credentials")

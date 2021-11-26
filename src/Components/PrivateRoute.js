@@ -3,7 +3,7 @@ import { Redirect, Route } from 'react-router';
 
 
 const PrivateRoute = ({ children, ...rest }) => {
-    const USER_ID = localStorage.getItem('userid');
+    const USER_ID = localStorage.getItem('userids');
 
     return (
         <Route
@@ -15,7 +15,7 @@ const PrivateRoute = ({ children, ...rest }) => {
                     (
                         <Redirect
                             to={{
-                                pathname: "/main",
+                                pathname: "/",
                                 state: { from: location }
                             }}
                         />

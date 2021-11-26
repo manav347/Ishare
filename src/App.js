@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Routes
 } from "react-router-dom";
 import MainPage from './Screens/MainPage/main';
 import EmergenciesPage from './Screens/EmergenciesPage/emergencies';
@@ -18,29 +17,23 @@ function App() {
     <Context>
       <Router>
         <Navbar />
-        <Routes>
-          {/* <Route exact path="/">
+        <Switch>
+          <Route exact path="/">
             <LoginPage></LoginPage>
-          </Route> */}
-          <Route exact path="/" element={<LoginPage />} />
-
-          <Route exact path="/main" element={<MainPage />} />
-
-          <Route exact path="/er" element={<EmergenciesPage />} />
-
+          </Route>
           {/* <PrivateRoute exact path="/main" element={<MainPage />} />
 
-          <PrivateRoute exact path="/er" element={<EmergenciesPage />} /> */}
+          <PrivateRoute exact path="/er" element={<EmergenciesPage />} />  */}
 
-          {/* <PrivateRoute exact path="/main">
+           <PrivateRoute exact path="/main">
             <MainPage></MainPage>
           </PrivateRoute>
 
           <PrivateRoute exact path="/er">
             <EmergenciesPage></EmergenciesPage>
-          </PrivateRoute> */}
+          </PrivateRoute>
 
-        </Routes>
+        </Switch>
 
 
         {/* <Routes>
