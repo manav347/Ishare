@@ -35,6 +35,8 @@ function LoginPage() {
 				// localStorage.setItem('userid', email);
 				// history.replace(from);
 				if (data.status === 'Login Success') {
+					localStorage.setItem('userid', data.id);
+					// history.replace(from);
 					alert("login successful")
 				} if (data.status === "Admin don't exist") {
 					alert("Invalid credentials")

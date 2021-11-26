@@ -1,8 +1,9 @@
 import './App.css';
 import {
-  BrowserRouter,
-  Routes,
-  Route
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Routes
 } from "react-router-dom";
 import MainPage from './Screens/MainPage/main';
 import EmergenciesPage from './Screens/EmergenciesPage/emergencies';
@@ -13,31 +14,58 @@ import PrivateRoute from './Components/PrivateRoute';
 
 function App() {
   return (
-    <div className="App">
-      <Context>
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            {/* <PrivateRoute exact path="/">
+    // <div className="App">
+    <Context>
+      <Router>
+        <Navbar />
+        <Routes>
+          {/* <Route exact path="/">
+            <LoginPage></LoginPage>
+          </Route> */}
+          <Route exact path="/" element={<LoginPage />} />
+
+          <Route exact path="/main" element={<MainPage />} />
+
+          <Route exact path="/er" element={<EmergenciesPage />} />
+
+          {/* <PrivateRoute exact path="/main" element={<MainPage />} />
+
+          <PrivateRoute exact path="/er" element={<EmergenciesPage />} /> */}
+
+          {/* <PrivateRoute exact path="/main">
+            <MainPage></MainPage>
+          </PrivateRoute>
+
+          <PrivateRoute exact path="/er">
+            <EmergenciesPage></EmergenciesPage>
+          </PrivateRoute> */}
+
+        </Routes>
+
+
+        {/* <Routes>
+            <PrivateRoute exact path="/">
               <LoginPage></LoginPage>
-            </PrivateRoute> */}
+            </PrivateRoute>
             <Route path="/" element={<LoginPage />} />
           </Routes>
           <Routes>
-            {/* <PrivateRoute exact path="/main">
+            <PrivateRoute exact path="/main">
               <MainPage></MainPage>
-            </PrivateRoute> */}
+            </PrivateRoute>
             <Route path="/main" element={<MainPage />} />
           </Routes>
           <Routes>
-            {/* <PrivateRoute exact path="/er">
+            <PrivateRoute exact path="/er">
               <EmergenciesPage></EmergenciesPage>
-            </PrivateRoute> */}
+            </PrivateRoute>
             <Route path="/er" element={<EmergenciesPage />} />
-          </Routes>
-        </BrowserRouter>
-      </Context>
-    </div>
+          </Routes> */}
+
+
+      </Router>
+    </Context>
+    // </div>
   );
 }
 
