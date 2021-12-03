@@ -10,7 +10,7 @@ function NavbarLogin() {
     return (
         <div id="navid">
             <nav className="navbar fixed-top navbar-expand-lg container-fluid">
-                <img className="graph" src={Diamond} alt="" style={{ height: "8em", width: "8em" }}></img>
+                <img className="graph" src={Diamond} alt="" style={{ height: "2.5em", width: "auto" }}></img>
 
                 <p className="navbar-brand2" href="home">Welcome to I Share</p>
                 <div className="navbarx p-2">

@@ -65,8 +65,8 @@ function ConversationComponent(props) {
 
       </MessageContainer>
       <ChatBox>
-        <button onClick={() => ss()} style={{ width: "150px", borderRadius: "30px", color: "#ffffff", margin: "0.4em", padding: "0 5px", height: "60px", border: "none", fontWeight: "500", backgroundColor: "#A30000" }}>Approve </button>
-        <button style={{ width: "150px", borderRadius: "30px", color: "#ffffff", margin: "0.4em", padding: "0 5px", height: "60px", border: "none", fontWeight: "500", backgroundColor: "#A30000" }}>Reject</button>
+        <UserAlertButton onClick={() => ss()} >Approve </UserAlertButton>
+        <UserAlertButton >Reject</UserAlertButton>
       </ChatBox>
     </Container>
   );
@@ -74,6 +74,21 @@ function ConversationComponent(props) {
 
 export default ConversationComponent;
 
+const UserAlertButton = styled.button`
+width: 150px;
+border-radius: 30px;
+color: #fff;
+margin: 0.4em;
+padding: 0 5px;
+height: 60px;
+border: none;
+font-weight: 500;
+background-color: #A30000;
+@media (max-width: 480px) {
+  width:100px;
+  height: 40px;
+}
+`;
 
 const SearchContainer = styled.div`
   display: flex;
@@ -157,6 +172,9 @@ const Message = styled.div`
   max-width: 50%;
   color: #303030;
   font-size: 14px;
+  @media (max-width: 480px) {
+  max-width: 100%;
+}
 `;
 const EmojiImage = styled.img`
   width: 28px;

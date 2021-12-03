@@ -152,7 +152,7 @@ const Form = styled.form`
 	@media (max-width: 480px) {
 		width: 100%;
 		padding: 0 1em;
-		margin-top: 1em;
+	margin-top: 60%;
 	}
 `;
 const Label = styled.label`

@@ -74,17 +74,17 @@ export default function ConversationComponentEr(props) {
 
 
 
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ width: "350px", height: "250px", backgroundColor: "red", margin: "30px" }}>
+        <ErParentCon>
+          <ErCon1>
             <MapContainer />
-          </div>
-          <div style={{ width: "350px", height: "250px", backgroundColor: "blue", margin: "30px" }}>
+          </ErCon1>
+          <ErCon>
             <ReactPlayer url={emergencies[0] ? emergencies[0].videoURL : null}
               width='100%'
               height='100%'
               controls />
-          </div>
-        </div>
+          </ErCon>
+        </ErParentCon>
         {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ width: "300px", height: "200px", backgroundColor: "red", margin: "30px" }}>
             <MapContainer
@@ -104,6 +104,36 @@ export default function ConversationComponentEr(props) {
   );
 }
 
+const ErParentCon = styled.div`
+display: flex;
+justify-content: space-between;
+@media (max-width: 480px) {
+display: block;
+}
+`;
+
+
+const ErCon1 = styled.div`
+width: 350px;
+height: 250px;
+background-color: blue;
+margin: 30px;
+@media (max-width: 480px) {
+display: none;
+}
+`;
+
+const ErCon = styled.div`
+width: 350px;
+height: 250px;
+background-color: blue;
+margin: 30px;
+@media (max-width: 480px) {
+  width:90%;
+  height: auto;
+margin: 5%;
+}
+`;
 
 const SearchBox = styled.div`
   display: flex;

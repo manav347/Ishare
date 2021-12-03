@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "./navbar.css";
+import "./navbarM.css";
 import { FaBookmark } from 'react-icons/fa';
 import { FaUserCircle } from 'react-icons/fa';
 import Diamond from '../../Assets/Images/dLogo.png';
 import { UseSelectedLocation } from "../context";
 
 
-function Navbar() {
+function NavbarM() {
 
     const [getlocation, setGetlocation] = useState([]);
     // const [slocation, setSlocation] = useState('');
@@ -33,34 +33,26 @@ function Navbar() {
     return (
         <div id="navid">
             <nav className="navbar fixed-top navbar-expand-lg container-fluid">
-                <img className="graph" src={Diamond} alt="" style={{ height: "4em", width: "5em" }}></img>
-                <div className="navbarx p-2">
+                <div style={{ display: "flex", marginTop: "10px" }}  >
+                    <img className="graph" src={Diamond} alt="" style={{ height: "2em", width: "3em", margin: "auto", }}></img>
                     <p className="navbar-brand1" href="home">Hi Manav,</p>
                     <p className="navbar-brand2" href="home">Welcome to I Share</p>
+
+                    <FaUserCircle style={{ fontSize: "30px", color: "#fff9f9;", margin: "0 10px" }} />
                 </div>
                 <div className="navbary p-2">
                     <Link to="/er"><button className="ButtonEr">Emergencies</button></Link>
                     <Link to="/main"><button className="ButtonEr">Users</button></Link>
-                </div>
-                <div className=" navbar ms-auto p-2" id="navbarSupportedContent">
-                    <div class="input-group d-flex">
-                        <select onChange={(e) => setSlocation(e.target.value)} name="cars" id="cars" style={{ width: "187px", margin: "0.4em", padding: "0 5px", height: "30px", fontWeight: "500" }}>
 
+                    <select onChange={(e) => setSlocation(e.target.value)} name="cars" id="cars" style={{ width: "auto", margin: "0.4em", padding: "0 5px", height: "30px", fontWeight: "500" }}>
+                        {
+                            getlocation.map((item, index) =>
+                                <option onChange={(e) => setSlocation(e.target.value)} key={item.regionName} value={item.regionName}  >{item.regionName}</option>
+                            )
+                        }
+                    </select>
 
-                            {
-                                getlocation.map((item, index) =>
-                                    <option onChange={(e) => setSlocation(e.target.value)} key={item.regionName} value={item.regionName}  >{item.regionName}</option>
-                                )
-                            }
-
-                            {/* <option value="volvo">Select region</option>
-                            <option value="saab">Maharashtra</option>
-                            <option value="opel">Punjab</option>
-                            <option value="audi">Up</option> */}
-                        </select>
-                        <FaBookmark style={{ fontSize: "30px", margin: "0.2em 2em 0 0.5em" }} />
-                        <FaUserCircle style={{ fontSize: "45px", color: "#fff9f9;" }} />
-                    </div>
+                    <FaBookmark style={{ fontSize: "30px", margin: "0.2em 2em 0 0.5em" }} />
                 </div>
 
             </nav>
@@ -69,5 +61,5 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default NavbarM;
 

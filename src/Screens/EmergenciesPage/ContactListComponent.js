@@ -140,6 +140,10 @@ const MessageText = styled.span`
   overflow: hidden;
   margin-top: 3px;
   color: rgba(0, 0, 0, 0.8);
+@media (max-width: 480px) {
+  overflow: visible;
+  height : 100%;
+}
 `;
 
 const MessageTime = styled.span`

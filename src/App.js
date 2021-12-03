@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -8,15 +9,33 @@ import MainPage from './Screens/MainPage/main';
 import EmergenciesPage from './Screens/EmergenciesPage/emergencies';
 import LoginPage from './Screens/LandingPage/login';
 import Navbar from './Components/Navbar/navbar';
+import NavbarM from "./Components/Navbar/navbarM";
 import { Context } from './Components/context';
 import PrivateRoute from './Components/PrivateRoute';
-
+// console.log(innerWidth)
 function App() {
+
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 480);
+
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 480);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
   return (
     // <div className="App">
     <Context>
       <Router>
-        <Navbar />
+        {isDesktop ? (
+          <Navbar />
+        ) : (
+          <NavbarM />
+        )}
+
         <Switch>
           <Route exact path="/">
             <LoginPage></LoginPage>
@@ -25,7 +44,7 @@ function App() {
 
           <PrivateRoute exact path="/er" element={<EmergenciesPage />} />  */}
 
-           <PrivateRoute exact path="/main">
+          <PrivateRoute exact path="/main">
             <MainPage></MainPage>
           </PrivateRoute>
 
