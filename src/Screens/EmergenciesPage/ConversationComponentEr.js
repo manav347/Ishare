@@ -85,19 +85,6 @@ export default function ConversationComponentEr(props) {
               controls />
           </ErCon>
         </ErParentCon>
-        {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ width: "300px", height: "200px", backgroundColor: "red", margin: "30px" }}>
-            <MapContainer
-              width='100%'
-              height='100%' />
-          </div>
-          <div style={{ width: "300px", height: "200px", backgroundColor: "blue", margin: "30px" }}>
-            <ReactPlayer url='https://www.youtube.com/watch?v=QqjBMVylBL4'
-              width='100%'
-              height='100%'
-              controls />
-          </div>
-        </div> */}
 
       </MessageContainer>
     </Container>
@@ -119,7 +106,9 @@ height: 250px;
 background-color: blue;
 margin: 30px;
 @media (max-width: 480px) {
-display: none;
+  width:90%;
+  height: 20vh;
+margin: 5%;
 }
 `;
 

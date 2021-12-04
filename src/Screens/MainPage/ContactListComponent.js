@@ -110,6 +110,11 @@ const ContactItem = styled.div`
   background: white;
   cursor: pointer;
   min-height: 53px;
+  
+@media (max-width: 480px) {
+height: 100%;
+min-height: 100px;
+}
 
   :hover {
     background: #ebebeb;
