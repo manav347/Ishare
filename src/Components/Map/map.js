@@ -7,7 +7,39 @@
 // };
 
 // export class MapContainer extends Component {
+
+//     static defaultProps = {
+//         center: {
+//             lat: 59.95,
+//             lng: 30.33
+//         },
+//         zoom: 11,
+
+//         a: "a",
+
+//         z: "0",
+//         lat: "0",
+//         log: "0"
+//     };
 //     render() {
+
+
+//         const { cord } = this.props;
+//         if (cord !== null) {
+//             if (cord[0]) {
+
+//                 this.a = cord[0];
+//                 console.log(this.a)
+//                 this.a.split(",")
+//                 this.z = this.a.split(",")
+//                 console.log(this.a)
+//                 this.lat = this.z[0]
+//                 this.log = this.z[1]
+//                 console.log(this.lat)
+//                 console.log(this.log)
+//             }
+//         }
+
 //         return (
 //             <Map
 //                 google={this.props.google}
@@ -15,9 +47,9 @@
 //                 style={mapStyles}
 //                 // width='100%'
 //                 // height='100%'
-//                 initialCenter={{ lat: 47.444, lng: -122.176 }}
+//                 initialCenter={{ lat: this.lat, lng: this.log }}
 //             >
-//                 <Marker position={{ lat: 48.00, lng: -122.00 }} />
+//                 <Marker position={{ lat: this.lat, lng: this.log }} />
 //             </Map>
 //         );
 //     }
@@ -32,7 +64,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import styled from "styled-components";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = ({ text }) => <div style={{ color: "#ff0000", fontSize: "20px", fontWeight: "500" }}>{text}</div>;
 
 class MapContainer extends Component {
     static defaultProps = {
@@ -40,24 +72,60 @@ class MapContainer extends Component {
             lat: 59.95,
             lng: 30.33
         },
-        zoom: 11
+        zoom: 11,
+
+        a: "a",
+
+        z: "0",
+        lat: "",
+        log: ""
     };
 
     render() {
+        const { cord } = this.props;
+        if (cord !== null) {
+            console.log(cord)
+            if (cord[0]) {
+
+                this.a = cord[0];
+                console.log(this.a)
+                this.a.split(",")
+                this.z = this.a.split(",")
+                console.log(this.a)
+                this.lat = this.z[0]
+                this.log = this.z[1]
+                console.log(this.lat)
+                console.log(this.log)
+            }
+        }
         return (
             // Important! Always set the container height explicitly
             <DIV>
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyDmVJbVb-btouc090vTNlprAfs-3A-hD24' }}
-                    defaultCenter={this.props.center}
-                    defaultZoom={this.props.zoom}
-                >
-                    <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
-                        text="My Marker"
-                    />
-                </GoogleMapReact>
+                {
+                    this.lat && this.log &&
+                    <GoogleMapReact
+                        bootstrapURLKeys={{ key: 'AIzaSyDmVJbVb-btouc090vTNlprAfs-3A-hD24' }}
+                        // defaultCenter={{ lat: 29.32, lng: 79.50 }}
+                        center={{
+                            lat:
+                                Math.round(this.lat * 100) / 100,
+                            lng:
+                                Math.round(this.log * 100) / 100
+
+                        }}
+                        defaultZoom={this.props.zoom}
+                    >
+                        <AnyReactComponent
+
+                            lat={this.lat}
+                            lng={this.log}
+
+                            // lat={59.955413}
+                            // lng={30.337844}
+                            text="SOS"
+                        />
+                    </GoogleMapReact>
+                }
             </DIV>
         );
     }

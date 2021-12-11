@@ -72,11 +72,13 @@ export default function ConversationComponentEr(props) {
           </Message>
         </MessageDiv>
 
+        {/* {emergencies[0] ? (emergencies[0].gps) : null} */}
 
 
+        {/* {(emergencies[0].gps)}.split(",") */}
         <ErParentCon>
           <ErCon1>
-            <MapContainer />
+            <MapContainer cord={emergencies[0] ? (emergencies[0].gps) : null} />
           </ErCon1>
           <ErCon>
             <ReactPlayer url={emergencies[0] ? emergencies[0].videoURL : null}
@@ -115,7 +117,6 @@ margin: 5%;
 const ErCon = styled.div`
 width: 350px;
 height: 250px;
-background-color: blue;
 margin: 30px;
 @media (max-width: 480px) {
   width:90%;

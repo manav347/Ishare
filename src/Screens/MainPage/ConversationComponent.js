@@ -9,8 +9,13 @@ function ConversationComponent(props) {
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState(messagesList);
+  const [otpSent, setOtpSent] = useState(false);
+  const [userData, setUserData] = useState([]);
 
+
+  console.log(userData)
   console.log(selectedChat)
+  console.log(otpSent)
 
   const onEnterPress = (event) => {
     if (event.key === "Enter") {
@@ -27,7 +32,28 @@ function ConversationComponent(props) {
     }
   };
 
+
+
+  useEffect(() => {
+    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getUserData/${selectedChat.userId}`, {
+      method: "get"
+    })
+      .then(res => res.json(
+      ))
+      .then(data => {
+        {
+          console.log(data);
+          setUserData(data);
+        }
+        // setEmergencies(data);
+      })
+      .catch(e => {
+        //       console.log(e);
+      })
+  }, [selectedChat.userId])
+
   const ss = () => {
+    setOtpSent(true);
     fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/postOTP/${selectedChat.id}`, {
       method: "post"
     })
@@ -59,21 +85,44 @@ function ConversationComponent(props) {
           <Message isYours={selectedChat.id === 0}>
             Email - {selectedChat.email}
           </Message>
+          {selectedChat.id}
         </MessageDiv>
 
 
 
+        {
+          userData.otpRequested === 'false' &&
+          <ChatBox>
+            <UserAlertButtonG onClick={() => ss()} >Approve </UserAlertButtonG>
+            <UserAlertButton >Reject</UserAlertButton>
+          </ChatBox>
+        }
+
+
+
+
       </MessageContainer>
-      <ChatBox>
-        <UserAlertButton onClick={() => ss()} >Approve </UserAlertButton>
-        <UserAlertButton >Reject</UserAlertButton>
-      </ChatBox>
     </Container>
   );
 }
 
 export default ConversationComponent;
 
+const UserAlertButtonG = styled.button`
+width: 150px;
+border-radius: 30px;
+color: #fff;
+margin: 0.4em;
+padding: 0 5px;
+height: 60px;
+border: none;
+font-weight: 500;
+background-color: green;
+@media (max-width: 480px) {
+  width:100px;
+  height: 40px;
+}
+`;
 const UserAlertButton = styled.button`
 width: 150px;
 border-radius: 30px;
