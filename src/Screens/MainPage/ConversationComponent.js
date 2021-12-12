@@ -55,7 +55,7 @@ function ConversationComponent(props) {
       .catch(e => {
         //       console.log(e);
       })
-  }, [selectedChat])
+  }, [selectedChat, userData.otpSent])
 
   const ss = () => {
     setOtpSent(true);
@@ -90,13 +90,21 @@ function ConversationComponent(props) {
           <Message isYours={selectedChat.id === 0}>
             Email - {selectedChat.email}
           </Message>
-          {/* {selectedChat.id} */}
+          {selectedChat.id}
+          {selectedChat.otpSent}
         </MessageDiv>
 
 
 
         {
-          userData.otpRequested === 'false' &&
+          userData.otpSent === 'false' &&
+          <ChatBox>
+            <UserAlertButtonG onClick={() => ss()} >Approve </UserAlertButtonG>
+            <UserAlertButton >Reject</UserAlertButton>
+          </ChatBox>
+        }
+        {
+          userData.otpSent == 'null' &&
           <ChatBox>
             <UserAlertButtonG onClick={() => ss()} >Approve </UserAlertButtonG>
             <UserAlertButton >Reject</UserAlertButton>
