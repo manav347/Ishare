@@ -15,7 +15,9 @@ function ConversationComponent(props) {
 
   console.log(userData)
   console.log(selectedChat)
-  console.log(otpSent)
+  let a = (selectedChat.id)
+  console.log(a)
+  // console.log(otpSent)
 
   const onEnterPress = (event) => {
     if (event.key === "Enter") {
@@ -35,13 +37,16 @@ function ConversationComponent(props) {
 
 
   useEffect(() => {
-    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getUserData/${selectedChat.userId}`, {
+
+    console.log(selectedChat.userId);
+    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getUserData/${a}`, {
       method: "get"
     })
       .then(res => res.json(
       ))
       .then(data => {
         {
+          console.log("data");
           console.log(data);
           setUserData(data);
         }
@@ -50,12 +55,12 @@ function ConversationComponent(props) {
       .catch(e => {
         //       console.log(e);
       })
-  }, [selectedChat.userId])
+  }, [selectedChat])
 
   const ss = () => {
     setOtpSent(true);
-    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/postOTP/${selectedChat.id}`, {
-      method: "post"
+    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/changeOTPSentStatus/${selectedChat.id}`, {
+      method: "put"
     })
       .then(res => res.json())
       .then(data => {
@@ -85,7 +90,7 @@ function ConversationComponent(props) {
           <Message isYours={selectedChat.id === 0}>
             Email - {selectedChat.email}
           </Message>
-          {selectedChat.id}
+          {/* {selectedChat.id} */}
         </MessageDiv>
 
 
