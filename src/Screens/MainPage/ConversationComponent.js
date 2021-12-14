@@ -9,7 +9,7 @@ function ConversationComponent(props) {
   const [text, setText] = useState("");
   const [pickerVisible, togglePicker] = useState(false);
   const [messageList, setMessageList] = useState(messagesList);
-  const [otpSent, setOtpSent] = useState(false);
+  const [otpSent, setOtpSent] = useState(0);
   const [userData, setUserData] = useState([]);
 
 
@@ -55,16 +55,16 @@ function ConversationComponent(props) {
       .catch(e => {
         //       console.log(e);
       })
-  }, [selectedChat, userData.otpSent])
+  }, [selectedChat, otpSent, userData.otpSent])
 
-  const ss = () => {
-    setOtpSent(true);
-    fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/changeOTPSentStatus/${selectedChat.id}`, {
+  const ss = async () => {
+    await fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/changeOTPSentStatus/${selectedChat.id}`, {
       method: "put"
     })
       .then(res => res.json())
       .then(data => {
         alert("Otp sent !!")
+        setOtpSent(otpSent + 1);
       })
       .catch(e => {
         alert("Error !!")
@@ -90,8 +90,8 @@ function ConversationComponent(props) {
           <Message isYours={selectedChat.id === 0}>
             Email - {selectedChat.email}
           </Message>
-          {selectedChat.id}
-          {selectedChat.otpSent}
+          {/* {selectedChat.id}
+          {selectedChat.otpSent} */}
         </MessageDiv>
 
 
