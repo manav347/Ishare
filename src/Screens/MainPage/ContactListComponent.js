@@ -8,7 +8,10 @@ const ContactComponent = (props) => {
       {/* <ProfileIcon src={userData.profilePic} /> */}
       <ContactInfo>
         <ContactName>Name - {userData?.userName}</ContactName>
-        <MessageText> Ph - {userData?.contactNumber}</MessageText>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <MessageText> Ph - {userData?.contactNumber}</MessageText>
+          <MessageText1>{(userData.createdDate ? userData.createdDate.slice(0, 10) : null)}   </MessageText1>
+        </div>
       </ContactInfo>
       {/* <MessageTime> {userData?.phoneNoTime}</MessageTime> */}
     </ContactItem>
@@ -41,6 +44,13 @@ function ContactListComponent(props) {
     <Container>
       <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Users</h4>
 
+      <select name="cars" id="cars" style={{ width: "187px", margin: "0.4em", padding: "0 5px", height: "30px", fontWeight: "500" }}>
+
+        <option value="volvo">Select region</option>
+        <option value="saab">Maharashtra</option>
+        <option value="opel">Punjab</option>
+        <option value="audi">Up</option>
+      </select>
       {
         users.length > 0 &&
         users.map((userData) => (
@@ -133,6 +143,19 @@ const ContactName = styled.span`
   color: black;
 `;
 
+const MessageText1 = styled.span`
+text-align:right;
+  width: 100%;
+  font-size: 14px;
+  height : 25px;
+  overflow: hidden;
+  margin-top: 3px;
+  color: rgba(0, 0, 0, 0.8);
+@media (max-width: 480px) {
+  overflow: visible;
+  height : 100%;
+}
+`;
 const MessageText = styled.span`
   width: 100%;
   font-size: 14px;
