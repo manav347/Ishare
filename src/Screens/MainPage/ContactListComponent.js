@@ -5,15 +5,16 @@ const ContactComponent = (props) => {
   const { userData, setChat } = props;
   return (
     <ContactItem onClick={() => setChat(userData)}>
-      {/* <ProfileIcon src={userData.profilePic} /> */}
       <ContactInfo>
-        <ContactName>Name - {userData?.userName}</ContactName>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <ContactName>Name - {userData?.userName}</ContactName>
+          <MessageText1>{(userData.lastUpdatedDate ? userData.lastUpdatedDate.slice(0, 10) : null)}   </MessageText1>
+        </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <MessageText> Ph - {userData?.contactNumber}</MessageText>
           <MessageText1>{(userData.createdDate ? userData.createdDate.slice(0, 10) : null)}   </MessageText1>
         </div>
       </ContactInfo>
-      {/* <MessageTime> {userData?.phoneNoTime}</MessageTime> */}
     </ContactItem>
   );
 };
@@ -22,7 +23,8 @@ const ContactComponent = (props) => {
 function ContactListComponent(props) {
 
   const [users, setUsers] = useState([]);
-
+  const [optionSort, setOptionSort] = useState('');
+  const [usersR, setUsersR] = useState([]);
 
   useEffect(() => {
     fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getUserOTPRequests`, {
@@ -38,24 +40,44 @@ function ContactListComponent(props) {
       })
   }, [])
 
-  console.log(users)
+  useEffect(() => {
+    console.log(optionSort)
+    if (optionSort === 'updatedDate') {
+      setUsersR(users.sort((a, b) => a.lastUpdatedDate > b.lastUpdatedDate ? 1 : -1))
+      console.log(usersR)
+    }
+  }, [optionSort])
+
+  const handleChange = (e) => {
+    setOptionSort(e.target.value);
+  };
+
 
   return (
     <Container>
       <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Users</h4>
 
-      <select name="cars" id="cars" style={{ width: "187px", margin: "0.4em", padding: "0 5px", height: "30px", fontWeight: "500" }}>
+      <select onChange={handleChange} name="cars" id="cars" style={{ width: "90%", borderRadius: "10px", margin: "2% 5%", border: "none", padding: "0 5px", height: "30px", fontWeight: "500" }}>
 
-        <option value="volvo">Select region</option>
-        <option value="saab">Maharashtra</option>
-        <option value="opel">Punjab</option>
-        <option value="audi">Up</option>
+        <option defaultValue value="createdDate">Created Date</option>
+        <option value="updatedDate">Updated Date</option>
       </select>
       {
-        users.length > 0 &&
-        users.map((userData) => (
+        users.length > 0 && optionSort === '' &&
+        users.sort((a, b) => a.createdDate > b.createdDate ? -1 : 1).map((userData) => (
           <ContactComponent userData={userData} setChat={props.setChat} />
         ))}
+      {
+        users.length > 0 && optionSort === 'createdDate' &&
+        users.sort((a, b) => a.createdDate > b.createdDate ? -1 : 1).map((userData) => (
+          <ContactComponent userData={userData} setChat={props.setChat} />
+        ))}
+      {
+        users.length > 0 && optionSort === 'updatedDate' &&
+        users.sort((a, b) => a.lastUpdatedDate > b.lastUpdatedDate ? 1 : -1).map((userData) => (
+          <ContactComponent userData={userData} setChat={props.setChat} />
+        ))}
+
     </Container>
   );
 }

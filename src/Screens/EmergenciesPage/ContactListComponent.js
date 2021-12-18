@@ -7,13 +7,21 @@ const ContactComponent = (props) => {
   const { userData, setChat } = props;
   const { ERData, setERData } = props;
   return (
+
     <ContactItem onClick={() => setChat(userData)}>
-      {/* <ProfileIcon src={userData.profilePic} /> */}
+
       <ContactInfo>
-        <ContactName>Name - {userData?.userName}</ContactName>
-        <MessageText> Ph - {userData?.contactNumber}</MessageText>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <ContactName>Name - {userData?.userName}</ContactName>
+
+          {/* <MessageText1>{(userData.lastUpdatedDate ? userData.lastUpdatedDate.slice(0, 10) : null)}   </MessageText1> */}
+
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <MessageText> Ph - {userData?.contactNumber}</MessageText>
+          <MessageText1>{(userData.createdDate ? userData.createdDate.slice(0, 10) : null)}   </MessageText1>
+        </div>
       </ContactInfo>
-      {/* <MessageTime> {userData?.phoneNoTime}</MessageTime> */}
     </ContactItem>
   );
 };
@@ -50,8 +58,9 @@ function ContactListComponent(props) {
 
       {
         users.length > 0 &&
-        users.map((userData) => (
-          <ContactComponent userData={userData} setChat={props.setChat} />
+        users.sort((a, b) => a.createdDate > b.createdDate ? -1 : 1).map((userData) => (
+
+          < ContactComponent userData={userData} setChat={props.setChat} />
         ))}
     </Container>
   );
@@ -60,6 +69,19 @@ function ContactListComponent(props) {
 export default ContactListComponent;
 
 
+const MessageText1 = styled.span`
+text-align:right;
+  width: 100%;
+  font-size: 14px;
+  height : 25px;
+  overflow: hidden;
+  margin-top: 3px;
+  color: rgba(0, 0, 0, 0.8);
+@media (max-width: 480px) {
+  overflow: visible;
+  height : 100%;
+}
+`;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
