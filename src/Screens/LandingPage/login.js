@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import Diamond from '../../Assets/Images/bg.png';
 import NavbarLogin from '../../Components/NavbarLogin/navbarLogin';
 
+
+import { css } from "@emotion/react";
+import PulseLoader from "react-spinners/PulseLoader";
+
 function LoginPage() {
 
 	// const history = useHistory();
@@ -12,11 +16,15 @@ function LoginPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
+	let [loading, setLoading] = useState(false);
+	let [color, setColor] = useState("#ffffff");
+
 	let history = useHistory();
 	let location = useLocation();
 	let { from } = location.state || { from: { pathname: "/main" } };
 
 	const handleSubmit = () => {
+		setLoading(true)
 		fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/adminLogin`, {
 			method: "post",
 			body: JSON.stringify({
@@ -37,8 +45,10 @@ function LoginPage() {
 				if (data.status === 'Login Success') {
 					localStorage.setItem('userids', data.id);
 					history.replace(from);
+					setLoading(false)
 					alert("login successful")
 				} if (data.status === "Admin don't exist") {
+					setLoading(false)
 					alert("Invalid credentials")
 				}
 
@@ -71,8 +81,16 @@ function LoginPage() {
 						<p style={{ fontSize: "15px" }} >Remember me</p>
 					</Div2>
 					<ButtonWrapper>
-						<Button type='button' to="/main" exact onClick={() => { handleSubmit() }}>
-							SUBMIT
+						<Button type='button' to="/main" exact onClick={() => { setLoading(!loading); handleSubmit() }}>
+							{
+								loading === false &&
+								<p style={{ margin: "0" }}>SUBMIT</p>
+							}
+							{
+								loading === true &&
+
+								<PulseLoader color={color} loading={loading} css={override} size={10} />
+							}
 						</Button>
 					</ButtonWrapper>
 				</Form>
@@ -81,6 +99,11 @@ function LoginPage() {
 		</>
 	)
 }
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: white;
+`;
 
 const HH = styled.h1`
 margin: 0.5em 0;
@@ -109,7 +132,6 @@ background-repeat: no-repeat;
 
 const ButtonWrapper = styled.div`
 	display: grid;
-	height: 8em;
 	place-items: center;
 	width: 100%;
 	@media (max-width: 480px) {
