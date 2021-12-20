@@ -42,7 +42,6 @@ function ContactListComponent(props) {
       .then(res => res.json(
       ))
       .then(data => {
-        console.log(data);
         setUsers(data);
       })
       .catch(e => {
@@ -50,11 +49,20 @@ function ContactListComponent(props) {
       })
   }, [slocation])
 
-  console.log(users)
-
+  const handleChange = (e) => {
+  };
   return (
     <Container>
-      <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Emergencies</h4>
+
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+
+        <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Emergencies</h4>
+
+        <select onChange={handleChange} name="cars" id="cars" style={{ width: "auto", borderRadius: "10px", margin: "10% 5% 2%", border: "none", padding: "0 5px", height: "30px", fontWeight: "500" }}>
+
+          <option defaultValue value="createdDate">Created Date</option>
+        </select>
+      </div>
 
       {
         users.length > 0 &&

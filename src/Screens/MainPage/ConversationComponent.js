@@ -3,6 +3,8 @@ import styled from "styled-components";
 // import Picker from "emoji-picker-react";
 import { messagesList } from "./mockData";
 
+import { css } from "@emotion/react";
+import PulseLoader from "react-spinners/PulseLoader";
 
 function ConversationComponent(props) {
   const { selectedChat } = props;
@@ -11,6 +13,9 @@ function ConversationComponent(props) {
   const [messageList, setMessageList] = useState(messagesList);
   const [otpSent, setOtpSent] = useState(0);
   const [userData, setUserData] = useState([]);
+
+  let [loading, setLoading] = useState(false);
+  let [color, setColor] = useState("#ffffff");
 
 
   console.log(userData)
@@ -58,15 +63,20 @@ function ConversationComponent(props) {
   }, [selectedChat, otpSent, userData.otpSent])
 
   const ss = async () => {
+    setLoading(true)
     await fetch(`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/changeOTPSentStatus/${selectedChat.id}`, {
       method: "put"
     })
       .then(res => res.json())
       .then(data => {
+        setLoading(false)
+
         alert("Otp sent !!")
         setOtpSent(otpSent + 1);
       })
       .catch(e => {
+        setLoading(false)
+
         alert("Error !!")
       })
   }
@@ -99,7 +109,16 @@ function ConversationComponent(props) {
         {
           userData.otpSent === 'false' &&
           <ChatBox>
-            <UserAlertButtonG onClick={() => ss()} >Approve </UserAlertButtonG>
+            {
+              loading === false &&
+              <UserAlertButtonG onClick={() => ss()} >Approve </UserAlertButtonG>
+            }
+            {
+              loading === true &&
+              <UserAlertButtonG >
+                <PulseLoader color={color} loading={loading} css={override} size={10} />
+              </UserAlertButtonG>
+            }
             <UserAlertButton >Reject</UserAlertButton>
           </ChatBox>
         }
@@ -121,6 +140,11 @@ function ConversationComponent(props) {
 
 export default ConversationComponent;
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: white;
+`;
 const UserAlertButtonG = styled.button`
 width: 150px;
 border-radius: 30px;

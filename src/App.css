@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+*:focus {
+  outline: none;
+}
 .circle {
   background: #d83b01;
   border-radius: 50%;

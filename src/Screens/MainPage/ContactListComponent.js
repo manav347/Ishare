@@ -8,11 +8,17 @@ const ContactComponent = (props) => {
       <ContactInfo>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <ContactName>Name - {userData?.userName}</ContactName>
-          <MessageText1>{(userData.lastUpdatedDate ? userData.lastUpdatedDate.slice(0, 10) : null)}   </MessageText1>
+          {
+            userData.lastUpdatedDate != null &&
+            <MessageText1> Updated - {(userData.lastUpdatedDate ? userData.lastUpdatedDate.slice(0, 10) : null)}   </MessageText1>
+          }
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <MessageText> Ph - {userData?.contactNumber}</MessageText>
-          <MessageText1>{(userData.createdDate ? userData.createdDate.slice(0, 10) : null)}   </MessageText1>
+          {
+            userData.createdDate != null &&
+            <MessageText1> Created - {(userData.createdDate ? userData.createdDate.slice(0, 10) : null)}   </MessageText1>
+          }
         </div>
       </ContactInfo>
     </ContactItem>
@@ -32,7 +38,6 @@ function ContactListComponent(props) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setUsers(data);
       })
       .catch(e => {
@@ -41,10 +46,8 @@ function ContactListComponent(props) {
   }, [])
 
   useEffect(() => {
-    console.log(optionSort)
     if (optionSort === 'updatedDate') {
       setUsersR(users.sort((a, b) => a.lastUpdatedDate > b.lastUpdatedDate ? 1 : -1))
-      console.log(usersR)
     }
   }, [optionSort])
 
@@ -55,13 +58,16 @@ function ContactListComponent(props) {
 
   return (
     <Container>
-      <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Users</h4>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
 
-      <select onChange={handleChange} name="cars" id="cars" style={{ width: "90%", borderRadius: "10px", margin: "2% 5%", border: "none", padding: "0 5px", height: "30px", fontWeight: "500" }}>
+        <h4 style={{ margin: "5% 5% 2%", paddingTop: "5%" }}>Users</h4>
 
-        <option defaultValue value="createdDate">Created Date</option>
-        <option value="updatedDate">Updated Date</option>
-      </select>
+        <select onChange={handleChange} name="cars" id="cars" style={{ width: "auto", borderRadius: "10px", margin: "10% 5% 2%", border: "none", padding: "0 5px", height: "30px", fontWeight: "500" }}>
+
+          <option defaultValue value="createdDate">Created Date</option>
+          <option value="updatedDate">Updated Date</option>
+        </select>
+      </div>
       {
         users.length > 0 && optionSort === '' &&
         users.sort((a, b) => a.createdDate > b.createdDate ? -1 : 1).map((userData) => (

@@ -10,7 +10,6 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 function LoginPage() {
 
-	// const history = useHistory();
 
 
 	const [email, setEmail] = useState('');
@@ -34,14 +33,6 @@ function LoginPage() {
 		})
 			.then(res => res.json())
 			.then(data => {
-				// console.log(data)
-				console.log(data.status)
-				// loginS()
-				// function loginS() {
-				// 	history.push("/main");
-				// }
-				// localStorage.setItem('userid', email);
-				// history.replace(from);
 				if (data.status === 'Login Success') {
 					localStorage.setItem('userids', data.id);
 					history.replace(from);
