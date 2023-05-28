@@ -1,56 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { UseSelectedLocation } from '../../Components/context';
+import { Users } from './mockData';
 
-const ContactComponent = (props) => {
-	const { userData, setChat } = props;
-	const { ERData, setERData } = props;
+const ContactComponent = ({ userData, onClick }) => {
+	//pass individual userdata on click to conversationcomponent
+	const handleClick = () => {
+		onClick(userData);
+	};
 	return (
-		<ContactItem onClick={() => setChat(userData)}>
+		<ContactItem onClick={handleClick}>
 			<ContactInfo>
 				<div
 					style={{ display: 'flex', justifyContent: 'space-between' }}
 				>
-					<ContactName>Name - {userData?.userName}</ContactName>
+					<ContactName>Name - {userData?.User}</ContactName>
 				</div>
 				<div
 					style={{ display: 'flex', justifyContent: 'space-between' }}
 				>
-					<MessageText> Ph - {userData?.contactNumber}</MessageText>
-					<MessageText1>
-						{userData.createdDate
-							? userData.createdDate.slice(0, 10)
-							: null}{' '}
-					</MessageText1>
+					<MessageText>
+						{' '}
+						Emergency date - {userData?.Emergency_date}
+					</MessageText>
 				</div>
 			</ContactInfo>
 		</ContactItem>
 	);
 };
-function ContactListComponent(props) {
+function ContactListComponent({ onUserClick }) {
 	const { slocation, setSlocation } = UseSelectedLocation();
-	const [users, setUsers] = useState([]);
+	// const [users, setUsers] = useState([]);
 
-	useEffect(() => {
-		fetch(
-			`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getEmergencyData`,
-			{
-				method: 'post',
-				body: JSON.stringify({
-					regionName: slocation,
-				}),
-			},
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				setUsers(data);
-			})
-			.catch((e) => {
-				console.log(e);
-			});
-	}, [slocation]);
+	// useEffect(() => {
+	// 	fetch(
+	// 		`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getEmergencyData`,
+	// 		{
+	// 			method: 'post',
+	// 			body: JSON.stringify({
+	// 				regionName: slocation,
+	// 			}),
+	// 		},
+	// 	)
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			setUsers(data);
+	// 		})
+	// 		.catch((e) => {
+	// 			console.log(e);
+	// 		});
+	// }, [slocation]);
 
 	const handleChange = (e) => {};
+
 	return (
 		<Container>
 			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -78,15 +80,13 @@ function ContactListComponent(props) {
 				</select>
 			</div>
 
-			{users.length > 0 &&
-				users
-					.sort((a, b) => (a.createdDate > b.createdDate ? -1 : 1))
-					.map((userData) => (
-						<ContactComponent
-							userData={userData}
-							setChat={props.setChat}
-						/>
-					))}
+			{Users.length > 0 &&
+				Users.map((userData) => (
+					<ContactComponent
+						userData={userData}
+						onClick={() => onUserClick(userData)}
+					/>
+				))}
 		</Container>
 	);
 }

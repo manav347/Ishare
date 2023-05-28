@@ -1,53 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import ReactPlayer from 'react-player';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import MapContainer from '../../Components/Map/map';
-import { UseSelectedLocation } from '../../Components/context';
 
-export default function ConversationComponentEr(props) {
-	const { selectedChat } = props;
-	const [text, setText] = useState('');
-	const [pickerVisible, togglePicker] = useState(false);
-	const { slocation, setSlocation } = UseSelectedLocation();
-
+export default function ConversationComponentEr({ selectedUser }) {
 	const [emergencies, setEmergencies] = useState([]);
 
-	useEffect(() => {
-		fetch(
-			`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getEmergencyData/${selectedChat.userId}`,
-			{
-				method: 'post',
-				body: JSON.stringify({
-					regionName: slocation,
-				}),
-			},
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				{
-					data.length > 0 && console.log(data);
-					setEmergencies(data);
-				}
-			})
-			.catch((e) => {
-				//       console.log(e);
-			});
-	}, [selectedChat.userId, slocation]);
+	console.log(selectedUser);
+
+	// useEffect(() => {
+	// 	fetch(
+	// 		`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getEmergencyData/${selectedChat.userId}`,
+	// 		{
+	// 			method: 'post',
+	// 			body: JSON.stringify({
+	// 				regionName: slocation,
+	// 			}),
+	// 		},
+	// 	)
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			{
+	// 				data.length > 0 && console.log(data);
+	// 				setEmergencies(data);
+	// 			}
+	// 		})
+	// 		.catch((e) => {
+	// 			//       console.log(e);
+	// 		});
+	// }, [selectedChat.userId, slocation]);
 	return (
 		<Container>
 			<MessageContainer>
-				<MessageDiv isYours={selectedChat.userId === 0}>
-					<Message isYours={selectedChat.userId === 0}>
-						Name - {selectedChat.userName}
+				<MessageDiv>
+					<Message>Name - {selectedUser.User}</Message>
+				</MessageDiv>
+				<MessageDiv>
+					<Message>Type - {selectedUser.type}</Message>
+				</MessageDiv>
+				<MessageDiv>
+					<Message>
+						Registration - {selectedUser.registration}
 					</Message>
 				</MessageDiv>
-				<MessageDiv isYours={selectedChat.userId === 0}>
-					<Message isYours={selectedChat.userId === 0}>
-						Ph - {selectedChat.contactNumber}
+				<MessageDiv>
+					<Message>
+						Emergency date - {selectedUser.Emergency_date}
 					</Message>
+				</MessageDiv>
+				<MessageDiv>
+					<Message>Time - {selectedUser.Time}</Message>
+				</MessageDiv>
+				<MessageDiv>
+					<Message>Location - {selectedUser.location}</Message>
+				</MessageDiv>
+				<MessageDiv>
+					<Message>Emergency - {selectedUser.Emergency}</Message>
+				</MessageDiv>
+				<MessageDiv>
+					<Message>Message - {selectedUser.Message}</Message>
 				</MessageDiv>
 
-				<ErParentCon>
+				{/* <ErParentCon>
 					<ErCon1>
 						<MapContainer
 							cord={emergencies[0] ? emergencies[0].gps : null}
@@ -63,7 +75,7 @@ export default function ConversationComponentEr(props) {
 							controls
 						/>
 					</ErCon>
-				</ErParentCon>
+				</ErParentCon> */}
 			</MessageContainer>
 		</Container>
 	);

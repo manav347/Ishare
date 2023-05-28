@@ -6,8 +6,13 @@ import ConversationComponentEr from './ConversationComponentEr';
 import './main.css';
 
 export default function EmergenciesPage() {
-	const [selectedChat, setChat] = useState();
 	const navigate = useNavigate();
+	const [selectedUser, setSelectedUser] = useState(null);
+
+	const handleUserClick = (user) => {
+		setSelectedUser(user);
+		console.log(user);
+	};
 
 	useEffect(() => {
 		if (localStorage.getItem('loggedIn') !== 'true') {
@@ -19,9 +24,9 @@ export default function EmergenciesPage() {
 		<>
 			<section id='main-section'>
 				<Container>
-					<ContactListComponent setChat={setChat} />
-					{selectedChat ? (
-						<ConversationComponentEr selectedChat={selectedChat} />
+					<ContactListComponent onUserClick={handleUserClick} />
+					{selectedUser ? (
+						<ConversationComponentEr selectedUser={selectedUser} />
 					) : (
 						<Placeholder>
 							<span>I share</span>
