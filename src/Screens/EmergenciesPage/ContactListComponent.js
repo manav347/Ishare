@@ -14,8 +14,6 @@ const ContactComponent = (props) => {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <ContactName>Name - {userData?.userName}</ContactName>
 
-          {/* <MessageText1>{(userData.lastUpdatedDate ? userData.lastUpdatedDate.slice(0, 10) : null)}   </MessageText1> */}
-
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <MessageText> Ph - {userData?.contactNumber}</MessageText>

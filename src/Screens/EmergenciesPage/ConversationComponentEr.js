@@ -16,22 +16,7 @@ export default function ConversationComponentEr(props) {
 
   const [emergencies, setEmergencies] = useState([]);
 
-  // console.log(selectedChat)
 
-  // const onEnterPress = (event) => {
-  //   if (event.key === "Enter") {
-  //     const messages = [...messageList];
-  //     messages.push({
-  //       id: 0,
-  //       messageType: "TEXT",
-  //       text,
-  //       senderID: 0,
-  //       addedOn: "12:02 PM",
-  //     });
-  //     setMessageList(messages);
-  //     setText("");
-  //   }
-  // };
 
 
   useEffect(() => {
@@ -50,13 +35,11 @@ export default function ConversationComponentEr(props) {
             console.log(data);
           setEmergencies(data);
         }
-        // setEmergencies(data);
       })
       .catch(e => {
         //       console.log(e);
       })
   }, [selectedChat.userId, slocation])
-  //  console.log(emergencies.videoURL);
   return (
     <Container>
       <MessageContainer>
@@ -72,10 +55,6 @@ export default function ConversationComponentEr(props) {
           </Message>
         </MessageDiv>
 
-        {/* {emergencies[0] ? (emergencies[0].gps) : null} */}
-
-
-        {/* {(emergencies[0].gps)}.split(",") */}
         <ErParentCon>
           <ErCon1>
             <MapContainer cord={emergencies[0] ? (emergencies[0].gps) : null} />

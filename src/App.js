@@ -12,7 +12,9 @@ import Navbar from './Components/Navbar/navbar';
 import NavbarM from "./Components/Navbar/navbarM";
 import { Context } from './Components/context';
 import PrivateRoute from './Components/PrivateRoute';
-// console.log(innerWidth)
+
+
+
 function App() {
 
   const [isDesktop, setDesktop] = useState(window.innerWidth > 480);
@@ -27,7 +29,9 @@ function App() {
   });
 
   return (
-    // <div className="App">
+
+
+
     <Context>
       <Router>
         {isDesktop ? (
@@ -40,44 +44,23 @@ function App() {
           <Route exact path="/">
             <LoginPage></LoginPage>
           </Route>
-          {/* <PrivateRoute exact path="/main" element={<MainPage />} />
 
-          <PrivateRoute exact path="/er" element={<EmergenciesPage />} />  */}
 
-          <PrivateRoute exact path="/main">
+          <Route exact path="/main">
             <MainPage></MainPage>
-          </PrivateRoute>
+          </Route>
 
-          <PrivateRoute exact path="/er">
+          <Route exact path="/er">
             <EmergenciesPage></EmergenciesPage>
-          </PrivateRoute>
+          </Route>
 
         </Switch>
 
 
-        {/* <Routes>
-            <PrivateRoute exact path="/">
-              <LoginPage></LoginPage>
-            </PrivateRoute>
-            <Route path="/" element={<LoginPage />} />
-          </Routes>
-          <Routes>
-            <PrivateRoute exact path="/main">
-              <MainPage></MainPage>
-            </PrivateRoute>
-            <Route path="/main" element={<MainPage />} />
-          </Routes>
-          <Routes>
-            <PrivateRoute exact path="/er">
-              <EmergenciesPage></EmergenciesPage>
-            </PrivateRoute>
-            <Route path="/er" element={<EmergenciesPage />} />
-          </Routes> */}
 
 
       </Router>
     </Context>
-    // </div>
   );
 }
 

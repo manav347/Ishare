@@ -10,7 +10,6 @@ import { UseSelectedLocation } from "../context";
 function NavbarM() {
 
     const [getlocation, setGetlocation] = useState([]);
-    // const [slocation, setSlocation] = useState('');
     const { slocation, setSlocation } = UseSelectedLocation()
 
     console.log(slocation)
@@ -27,8 +26,6 @@ function NavbarM() {
             })
     }, [])
 
-
-    // RegionChange
 
     return (
         <div id="navid">

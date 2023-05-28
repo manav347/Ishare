@@ -10,7 +10,6 @@ import { UseSelectedLocation } from "../context";
 function Navbar() {
 
     const [getlocation, setGetlocation] = useState([]);
-    // const [slocation, setSlocation] = useState('');
     const { slocation, setSlocation } = UseSelectedLocation()
 
     console.log(slocation)
@@ -28,7 +27,6 @@ function Navbar() {
     }, [])
 
 
-    // RegionChange
 
     return (
         <div id="navid">
@@ -53,10 +51,6 @@ function Navbar() {
                                 )
                             }
 
-                            {/* <option value="volvo">Select region</option>
-                            <option value="saab">Maharashtra</option>
-                            <option value="opel">Punjab</option>
-                            <option value="audi">Up</option> */}
                         </select>
                         <FaBookmark style={{ fontSize: "30px", margin: "0.2em 2em 0 0.5em" }} />
                         <FaUserCircle style={{ fontSize: "45px", color: "#fff9f9;" }} />
