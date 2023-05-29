@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import styled from 'styled-components';
 import { Users } from './mockData';
@@ -181,11 +182,11 @@ const MessageText = styled.span`
 // 	white-space: nowrap;
 // `;
 
-const ProfileImage = styled.img`
-	width: 32px;
-	height: 32px;
-	border-radius: 50%;
-`;
+// const ProfileImage = styled.img`
+// 	width: 32px;
+// 	height: 32px;
+// 	border-radius: 50%;
+// `;
 // const ProfileIcon = styled(ProfileImage)`
 // 	width: 38px;
 // 	height: 38px;

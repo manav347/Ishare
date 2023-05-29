@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Police from '../../Assets/Images/Pune police.png';
 // import { UseSelectedLocation } from '../context';
