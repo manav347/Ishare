@@ -1,8 +1,5 @@
 import React from "react";
 import "./navbarLogin.css";
-import { FaBookmark } from 'react-icons/fa';
-import { FaUserCircle } from 'react-icons/fa';
-import Diamond from '../../Assets/Images/dLogo.png';
 import Police from '../../Assets/Images/Pune police.png';
 
 

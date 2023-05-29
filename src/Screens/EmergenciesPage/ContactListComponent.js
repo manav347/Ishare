@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UseSelectedLocation } from '../../Components/context';
 import { Users } from './mockData';
 
 const ContactComponent = ({ userData, onClick }) => {
@@ -29,7 +28,7 @@ const ContactComponent = ({ userData, onClick }) => {
 	);
 };
 function ContactListComponent({ onUserClick }) {
-	const { slocation, setSlocation } = UseSelectedLocation();
+	// const { slocation, setSlocation } = UseSelectedLocation();
 	// const [users, setUsers] = useState([]);
 
 	// useEffect(() => {
@@ -51,7 +50,7 @@ function ContactListComponent({ onUserClick }) {
 	// 		});
 	// }, [slocation]);
 
-	const handleChange = (e) => {};
+	const handleChange = (e) => { };
 
 	return (
 		<Container>
@@ -93,19 +92,7 @@ function ContactListComponent({ onUserClick }) {
 
 export default ContactListComponent;
 
-const MessageText1 = styled.span`
-	text-align: right;
-	width: 100%;
-	font-size: 14px;
-	height: 25px;
-	overflow: hidden;
-	margin-top: 3px;
-	color: rgba(0, 0, 0, 0.8);
-	@media (max-width: 480px) {
-		overflow: visible;
-		height: 100%;
-	}
-`;
+
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -118,19 +105,14 @@ const Container = styled.div`
 	border-right: 1px solid #dadada;
 `;
 
-const ProfileInfoDiv = styled.div`
-	display: flex;
-	flex-direction: row;
-	background: #ededed;
-	padding: 10px;
-`;
 
-const SearchBox = styled.div`
-	display: flex;
-	flex-direction: row;
-	background: #f6f6f6;
-	padding: 10px;
-`;
+
+// const SearchBox = styled.div`
+// 	display: flex;
+// 	flex-direction: row;
+// 	background: #f6f6f6;
+// 	padding: 10px;
+// `;
 export const SearchContainer = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -140,10 +122,10 @@ export const SearchContainer = styled.div`
 	padding: 5px 10px;
 	gap: 10px;
 `;
-const SearchIcon = styled.img`
-	width: 28px;
-	height: 28px;
-`;
+// const SearchIcon = styled.img`
+// 	width: 28px;
+// 	height: 28px;
+// `;
 export const SearchInput = styled.input`
 	width: 100%;
 	outline: none;
@@ -192,24 +174,24 @@ const MessageText = styled.span`
 	}
 `;
 
-const MessageTime = styled.span`
-	font-size: 12px;
-	margin-right: 10px;
-	color: rgba(0, 0, 0, 0.45);
-	white-space: nowrap;
-`;
+// const MessageTime = styled.span`
+// 	font-size: 12px;
+// 	margin-right: 10px;
+// 	color: rgba(0, 0, 0, 0.45);
+// 	white-space: nowrap;
+// `;
 
 const ProfileImage = styled.img`
 	width: 32px;
 	height: 32px;
 	border-radius: 50%;
 `;
-const ProfileIcon = styled(ProfileImage)`
-	width: 38px;
-	height: 38px;
-	border-radius: 50%;
-	margin-left: 12px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	object-fit: cover;
-`;
+// const ProfileIcon = styled(ProfileImage)`
+// 	width: 38px;
+// 	height: 38px;
+// 	border-radius: 50%;
+// 	margin-left: 12px;
+// 	margin-top: 15px;
+// 	margin-bottom: 15px;
+// 	object-fit: cover;
+// `;

@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { FaBookmark, FaUserCircle } from 'react-icons/fa';
-
 import { useNavigate } from 'react-router-dom';
 import Police from '../../Assets/Images/Pune police.png';
-import Diamond from '../../Assets/Images/dLogo.png';
-import { UseSelectedLocation } from '../context';
+// import { UseSelectedLocation } from '../context';
 import './navbar.css';
 
 function Navbar() {
-	const [getlocation, setGetlocation] = useState([]);
-	const { slocation, setSlocation } = UseSelectedLocation();
+	// const [getlocation, setGetlocation] = useState([]);
+	// const { slocation, setSlocation } = UseSelectedLocation();
 	const navigate = useNavigate();
 	console.log(slocation);
 	// useEffect(() => {

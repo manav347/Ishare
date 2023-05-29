@@ -48,12 +48,12 @@ const Container = styled.div`
 	background: #f8f9fb;
 `;
 
-const ChatPlaceholder = styled.img`
-	width: 240px;
-	height: 240px;
-	border-radius: 50%;
-	object-fit: contain;
-`;
+// const ChatPlaceholder = styled.img`
+// 	width: 240px;
+// 	height: 240px;
+// 	border-radius: 50%;
+// 	object-fit: contain;
+// `;
 const Placeholder = styled.div`
 	flex: 3;
 	display: flex;

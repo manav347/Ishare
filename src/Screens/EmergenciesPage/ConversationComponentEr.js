@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 export default function ConversationComponentEr({ selectedUser }) {
-	const [emergencies, setEmergencies] = useState([]);
+	// const [emergencies, setEmergencies] = useState([]);
 
 	console.log(selectedUser);
 
@@ -83,52 +83,52 @@ export default function ConversationComponentEr({ selectedUser }) {
 	);
 }
 
-const ErParentCon = styled.div`
-	display: flex;
-	justify-content: space-between;
-	@media (max-width: 480px) {
-		display: block;
-	}
-`;
+// const ErParentCon = styled.div`
+// 	display: flex;
+// 	justify-content: space-between;
+// 	@media (max-width: 480px) {
+// 		display: block;
+// 	}
+// `;
 
-const ErCon1 = styled.div`
-	width: 350px;
-	height: 250px;
-	background-color: blue;
-	margin: 30px;
-	@media (max-width: 480px) {
-		width: 90%;
-		height: 20vh;
-		margin: 5%;
-	}
-`;
+// const ErCon1 = styled.div`
+// 	width: 350px;
+// 	height: 250px;
+// 	background-color: blue;
+// 	margin: 30px;
+// 	@media (max-width: 480px) {
+// 		width: 90%;
+// 		height: 20vh;
+// 		margin: 5%;
+// 	}
+// `;
 
-const ErCon = styled.div`
-	width: 350px;
-	height: 250px;
-	margin: 30px;
-	@media (max-width: 480px) {
-		width: 90%;
-		height: auto;
-		margin: 5%;
-	}
-`;
+// const ErCon = styled.div`
+// 	width: 350px;
+// 	height: 250px;
+// 	margin: 30px;
+// 	@media (max-width: 480px) {
+// 		width: 90%;
+// 		height: auto;
+// 		margin: 5%;
+// 	}
+// `;
 
-const SearchBox = styled.div`
-	display: flex;
-	flex-direction: row;
-	background: #f6f6f6;
-	padding: 10px;
-`;
-const SearchContainer = styled.div`
-	display: flex;
-	flex-direction: row;
-	background: white;
-	border-radius: 16px;
-	width: 100%;
-	padding: 5px 10px;
-	gap: 10px;
-`;
+// const SearchBox = styled.div`
+// 	display: flex;
+// 	flex-direction: row;
+// 	background: #f6f6f6;
+// 	padding: 10px;
+// `;
+// const SearchContainer = styled.div`
+// 	display: flex;
+// 	flex-direction: row;
+// 	background: white;
+// 	border-radius: 16px;
+// 	width: 100%;
+// 	padding: 5px 10px;
+// 	gap: 10px;
+// `;
 
 const Container = styled.div`
 	display: flex;
@@ -139,40 +139,40 @@ const Container = styled.div`
 	background: #f6f7f8;
 `;
 
-const ProfileHeader = styled.div`
-	display: flex;
-	flex-direction: row;
-	background: #ededed;
-	padding: 10px;
-	align-items: center;
-`;
+// const ProfileHeader = styled.div`
+// 	display: flex;
+// 	flex-direction: row;
+// 	background: #ededed;
+// 	padding: 10px;
+// 	align-items: center;
+// `;
 
-const ProfileInfo = styled.div`
-	display: flex;
-	flex-direction: row;
-	background: #ededed;
-	align-items: center;
-	gap: 10px;
-`;
+// const ProfileInfo = styled.div`
+// 	display: flex;
+// 	flex-direction: row;
+// 	background: #ededed;
+// 	align-items: center;
+// 	gap: 10px;
+// `;
 
-const ProfileImage = styled.img`
-	width: 32px;
-	height: 32px;
-	border-radius: 50%;
-`;
-const ContactName = styled.span`
-	font-size: 16px;
-	color: black;
-`;
+// const ProfileImage = styled.img`
+// 	width: 32px;
+// 	height: 32px;
+// 	border-radius: 50%;
+// `;
+// const ContactName = styled.span`
+// 	font-size: 16px;
+// 	color: black;
+// `;
 
-const ChatBox = styled.div`
-	display: flex;
-	flex-direction: row;
-	background: #e5e5e5;
-	padding: 10px;
-	align-items: center;
-	bottom: 0;
-`;
+// const ChatBox = styled.div`
+// 	display: flex;
+// 	flex-direction: row;
+// 	background: #e5e5e5;
+// 	padding: 10px;
+// 	align-items: center;
+// 	bottom: 0;
+// `;
 const MessageContainer = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -195,10 +195,10 @@ const Message = styled.div`
 	color: #303030;
 	font-size: 14px;
 `;
-const EmojiImage = styled.img`
-	width: 28px;
-	height: 28px;
-	border-radius: 50%;
-	opacity: 0.4;
-	cursor: pointer;
-`;
+// const EmojiImage = styled.img`
+// 	width: 28px;
+// 	height: 28px;
+// 	border-radius: 50%;
+// 	opacity: 0.4;
+// 	cursor: pointer;
+// `;

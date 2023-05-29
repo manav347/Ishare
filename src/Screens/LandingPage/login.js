@@ -12,7 +12,7 @@ function LoginPage() {
 	const [password, setPassword] = useState('');
 
 	let [loading, setLoading] = useState(false);
-	let [color, setColor] = useState('#ffffff');
+	// let [color, setColor] = useState('#ffffff');
 	const navigate = useNavigate();
 
 	const handleSubmit = () => {
@@ -158,15 +158,15 @@ const ButtonWrapper = styled.div`
 	}
 `;
 
-const TextArea = styled.textarea`
-	margin-top: 0.5em;
-	resize: none;
-	background-color: inherit;
-	border: 1px solid #a5a1a1;
-	font-size: 18px;
-	line-height: 22px;
-	padding: 0.5em;
-`;
+// const TextArea = styled.textarea`
+// 	margin-top: 0.5em;
+// 	resize: none;
+// 	background-color: inherit;
+// 	border: 1px solid #a5a1a1;
+// 	font-size: 18px;
+// 	line-height: 22px;
+// 	padding: 0.5em;
+// `;
 const Button = styled.button`
 	background-color: #032d23;
 	color: white;
@@ -196,13 +196,13 @@ const Form = styled.form`
 		margin-top: 60%;
 	}
 `;
-const Label = styled.label`
-	margin-top: 1.5em;
-	@media (max-width: 480px) {
-		margin-top: 1em;
-		font-size: 21px;
-	}
-`;
+// const Label = styled.label`
+// 	margin-top: 1.5em;
+// 	@media (max-width: 480px) {
+// 		margin-top: 1em;
+// 		font-size: 21px;
+// 	}
+// `;
 const Input = styled.input`
 	margin: 1em 0;
 	border: 2.5px solid #032d23;
