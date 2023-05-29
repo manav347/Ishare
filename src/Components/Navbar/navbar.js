@@ -8,7 +8,7 @@ function Navbar() {
 	// const [getlocation, setGetlocation] = useState([]);
 	// const { slocation, setSlocation } = UseSelectedLocation();
 	const navigate = useNavigate();
-	console.log(slocation);
+	// console.log(slocation);
 	// useEffect(() => {
 	// 	fetch(
 	// 		`https://yktcub3eql.execute-api.ap-south-1.amazonaws.com/dev/getAllRegions`,

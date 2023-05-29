@@ -105,7 +105,7 @@ function LoginPage() {
 							)}
 							{loading === true && (
 								<PulseLoader
-									color={color}
+									// color={color}
 									loading={loading}
 									css={override}
 									size={10}
