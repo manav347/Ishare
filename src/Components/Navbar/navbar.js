@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaBookmark, FaUserCircle } from 'react-icons/fa';
 
 import { useNavigate } from 'react-router-dom';
+import Police from '../../Assets/Images/Pune police.png';
 import Diamond from '../../Assets/Images/dLogo.png';
 import { UseSelectedLocation } from '../context';
 import './navbar.css';
@@ -38,28 +39,36 @@ function Navbar() {
 			<nav className='navbar fixed-top navbar-expand-lg container-fluid'>
 				<img
 					className='graph'
-					src={Diamond}
+					src={Police}
 					alt=''
 					style={{ height: '4em', width: '5em' }}
 				></img>
 				<div className='navbarx p-2'>
 					<p className='navbar-brand1' href='home'>
-						Hi Manav,
+						Women's initiative
 					</p>
 					<p className='navbar-brand2' href='home'>
-						Welcome to I Share
+						Safety H-Shield
 					</p>
 				</div>
-				<div className='navbary p-2'>
+				{/* <div className='navbary p-2'>
 					<button onClick={handleLogout} className='ButtonEr'>
 						Logout
 					</button>
-				</div>
+				</div> */}
 				<div
 					className=' navbar ms-auto p-2'
 					id='navbarSupportedContent'
 				>
-					<div class='input-group d-flex'>
+
+
+					<div className='navbary p-2'>
+						<button onClick={handleLogout} className='ButtonEr'>
+							Logout
+						</button>
+					</div>
+
+					{/* <div class='input-group d-flex'>
 						<select
 							onChange={(e) => setSlocation(e.target.value)}
 							name='cars'
@@ -93,7 +102,7 @@ function Navbar() {
 						<FaUserCircle
 							style={{ fontSize: '45px', color: '#fff9f9;' }}
 						/>
-					</div>
+					</div> */}
 				</div>
 			</nav>
 		</div>

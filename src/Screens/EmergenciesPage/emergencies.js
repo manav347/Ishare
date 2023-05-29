@@ -29,7 +29,7 @@ export default function EmergenciesPage() {
 						<ConversationComponentEr selectedUser={selectedUser} />
 					) : (
 						<Placeholder>
-							<span>I share</span>
+							<span>Safety H-Shield</span>
 							Be safe.
 						</Placeholder>
 					)}

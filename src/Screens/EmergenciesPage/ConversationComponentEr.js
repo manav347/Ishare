@@ -59,6 +59,8 @@ export default function ConversationComponentEr({ selectedUser }) {
 					<Message>Message - {selectedUser.Message}</Message>
 				</MessageDiv>
 
+
+
 				{/* <ErParentCon>
 					<ErCon1>
 						<MapContainer
